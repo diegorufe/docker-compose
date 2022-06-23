@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    #restart: always
+    hostname: 'localhost'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        # Add any other gitlab.rb configuration here, each on its own line
+        external_url 'http://localhost'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        # nginx['redirect_http_to_https'] = true
+        # nginx['ssl_certificate'] = "/etc/gitlab/ssl/fullchain.pem"
+        # nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/privkey.pem"
+        # nginx['ssl_dhparam'] = "/etc/gitlab/ssl/dhparams.pem"
+
+    ports:
+      - '8100:80'
+      - '8443:443'
+      - '2224:22'
+
+    volumes:
+      - './gitlab/config:/etc/gitlab'
+      - './gitlab/logs:/var/log/gitlab'
+      - './gitlab/data:/var/opt/gitlab'
+      - './gitlab/config/ssl:/etc/gitlab/ssl'

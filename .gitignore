@@ -1,0 +1,9 @@
+*   
+# But not these files...
+!.gitignore
+
+# Whitelist anything that's a directory
+!*/
+*/**
+# docker compose file
+!*/*compose.yml
