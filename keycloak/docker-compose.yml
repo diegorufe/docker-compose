@@ -1,0 +1,13 @@
+version: "3"
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:17.0.0
+    volumes: 
+      - ./themes/sometheme/:/opt/keycloak/themes/sometheme/
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_PROXY: edge
+    entrypoint: ["/opt/keycloak/bin/kc.sh", "start-dev"]
+    ports:
+      - 8301:8080
