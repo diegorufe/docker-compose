@@ -12,6 +12,11 @@ services:
       REDMINE_DB_MYSQL: db
       REDMINE_DB_PASSWORD: example
       REDMINE_SECRET_KEY_BASE: supersecretkey
+      REDMINE_PLUGINS_MIGRATE: "true"
+    volumes:
+      - ./storage/docker_redmine-plugins:/usr/src/redmine/plugins
+      - ./storage/docker_redmine-themes:/usr/src/redmine/public/themes
+      - ./storage/docker_redmine-data:/usr/src/redmine/files
 
   db:
     image: mysql:5.7
