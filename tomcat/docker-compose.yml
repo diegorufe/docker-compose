@@ -1,0 +1,12 @@
+version: '3'
+services:
+      tomcat:
+         # image: 'tomcat:9.0.39'
+         image: 'tomcat:9.0.39-jdk8-adoptopenjdk-openj9'
+         # restart: always
+         ports:
+             - '9002:8080'
+         volumes:
+             - ./conf:/opt/bitnami/tomcat/conf/
+             - ./webapps:/usr/local/tomcat/webapps     
+             - ./work:/usr/local/tomcat/work                                                      
